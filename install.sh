@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -n "${BASH_SOURCE[0]-}" ]]; then
+  SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+else
+  SCRIPT_DIR=""
+fi
 SKILL_NAME="checkpoint"
 
 print_help() {
@@ -54,7 +58,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-if [[ -f "$SCRIPT_DIR/SKILL.md" ]]; then
+if [[ -n "$SCRIPT_DIR" && -f "$SCRIPT_DIR/SKILL.md" ]]; then
   SOURCE_DIR="$SCRIPT_DIR"
 else
   REPO_URL="${REPO_URL:-}"
