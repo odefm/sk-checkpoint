@@ -20,8 +20,8 @@ Run the installer from this repo:
 
 Or run directly from GitHub:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ORG/REPO/main/install.sh | \
-  REPO_URL=https://github.com/ORG/REPO bash
+curl -fsSL https://raw.githubusercontent.com/odefm/sk-checkpoint/main/install.sh | \
+  REPO_URL=https://github.com/odefm/sk-checkpoint bash
 ```
 
 Optional flags:
@@ -31,13 +31,13 @@ Optional flags:
 
 Examples:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ORG/REPO/main/install.sh | \
-  REPO_URL=https://github.com/ORG/REPO bash -s -- --codex
+curl -fsSL https://raw.githubusercontent.com/odefm/sk-checkpoint/main/install.sh | \
+  REPO_URL=https://github.com/odefm/sk-checkpoint bash -s -- --codex
 ```
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ORG/REPO/main/install.sh | \
-  REPO_URL=https://github.com/ORG/REPO bash -s -- --claude
+curl -fsSL https://raw.githubusercontent.com/odefm/sk-checkpoint/main/install.sh | \
+  REPO_URL=https://github.com/odefm/sk-checkpoint bash -s -- --claude
 ```
 
 ## Files included
