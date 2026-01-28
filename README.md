@@ -40,6 +40,11 @@ curl -fsSL https://raw.githubusercontent.com/odefm/sk-checkpoint/main/install.sh
   REPO_URL=https://github.com/odefm/sk-checkpoint bash -s -- --claude
 ```
 
+## How to invoke
+- Codex: type `$checkpoint`
+- Claude Code: type `/checkpoint`
+- Note: if the agent is already running when you install, quit and resume so the new skill is discovered.
+
 ## Files included
 - `SKILL.md` (primary instructions)
 - `references/` (supporting references when needed)
