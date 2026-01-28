@@ -12,6 +12,9 @@ Create and maintain a single, living Markdown plan for TDD work using a strict c
 This repo is designed to be copied into:
 - `~/.codex/skills/checkpoint`
 - `~/.claude/skills/checkpoint`
+- `~/.gemini/skills/checkpoint`
+
+Gemini CLI v0.26.0+ supports skills from `~/.gemini/skills`.
 
 Run the installer from this repo:
 ```bash
@@ -27,6 +30,7 @@ curl -fsSL https://raw.githubusercontent.com/odefm/sk-checkpoint/main/install.sh
 Optional flags:
 - `--codex` (install only to `~/.codex/skills/checkpoint`)
 - `--claude` (install only to `~/.claude/skills/checkpoint`)
+- `--gemini` (install only to `~/.gemini/skills/checkpoint`)
 - `--dry-run`
 
 Examples:
@@ -40,9 +44,16 @@ curl -fsSL https://raw.githubusercontent.com/odefm/sk-checkpoint/main/install.sh
   REPO_URL=https://github.com/odefm/sk-checkpoint bash -s -- --claude
 ```
 
+```bash
+curl -fsSL https://raw.githubusercontent.com/odefm/sk-checkpoint/main/install.sh | \
+  REPO_URL=https://github.com/odefm/sk-checkpoint bash -s -- --gemini
+```
+
 ## How to invoke
 - Codex: type `$checkpoint`
 - Claude Code: type `/checkpoint`
+- Gemini CLI: type `$checkpoint` to manually invoke.
+- Gemini CLI docs: “Gemini autonomously decides when to employ a skill based on your request.” When relevant, it pulls in the full instructions/resources via the `activate_skill` tool.
 - Note: if the agent is already running when you install, quit and resume so the new skill is discovered.
 
 ## Files included

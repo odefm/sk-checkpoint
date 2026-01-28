@@ -10,13 +10,13 @@ SKILL_NAME="checkpoint"
 
 print_help() {
   cat <<'EOF'
-Install the checkpoint skill into Codex and/or Claude skills directories.
+Install the checkpoint skill into Codex, Claude, and/or Gemini skills directories.
 
 Usage:
-  ./install.sh [--codex] [--claude] [--dry-run]
+  ./install.sh [--codex] [--claude] [--gemini] [--dry-run]
 
-If no target flags are provided, installs to both:
-  ~/.codex/skills/checkpoint and ~/.claude/skills/checkpoint
+If no target flags are provided, installs to all three:
+  ~/.codex/skills/checkpoint, ~/.claude/skills/checkpoint, and ~/.gemini/skills/checkpoint
 
 When running via curl, set:
   REPO_URL=https://github.com/ORG/REPO
@@ -28,25 +28,23 @@ EOF
 DRY_RUN=0
 INSTALL_CODEX=0
 INSTALL_CLAUDE=0
-
-if [[ $# -eq 0 ]]; then
-  INSTALL_CODEX=1
-  INSTALL_CLAUDE=1
-fi
+INSTALL_GEMINI=0
 
 for arg in "$@"; do
   case "$arg" in
     --codex) INSTALL_CODEX=1 ;;
     --claude) INSTALL_CLAUDE=1 ;;
+    --gemini) INSTALL_GEMINI=1 ;;
     --dry-run) DRY_RUN=1 ;;
     -h|--help) print_help; exit 0 ;;
     *) echo "Unknown arg: $arg" >&2; print_help; exit 1 ;;
   esac
 done
 
-if [[ $INSTALL_CODEX -eq 0 && $INSTALL_CLAUDE -eq 0 ]]; then
-  echo "No install target selected. Use --codex and/or --claude." >&2
-  exit 1
+if [[ $INSTALL_CODEX -eq 0 && $INSTALL_CLAUDE -eq 0 && $INSTALL_GEMINI -eq 0 ]]; then
+  INSTALL_CODEX=1
+  INSTALL_CLAUDE=1
+  INSTALL_GEMINI=1
 fi
 
 SOURCE_DIR=""
@@ -123,4 +121,8 @@ fi
 
 if [[ $INSTALL_CLAUDE -eq 1 ]]; then
   copy_skill "$HOME/.claude/skills/$SKILL_NAME"
+fi
+
+if [[ $INSTALL_GEMINI -eq 1 ]]; then
+  copy_skill "$HOME/.gemini/skills/$SKILL_NAME"
 fi
