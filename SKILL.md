@@ -10,14 +10,16 @@ description: Create and maintain a single living Markdown plan file for TDD work
 - Keep the plan current after every meaningful action
 - Write TDD-first checklist items with TEST before IMPLEMENT
 - Use explicit file paths, commands, and assertions
+- Mark completed checkpoints by renaming to `checkpoint-complete-<feature-name>.md`
 
 ## Startup behavior
-- On activation, scan `/plan` for `checkpoint-*.md`
-- If any exist, present them as a numbered list (e.g., `1) checkpoint-foo.md`) so the user can reply with a number, then ask whether to continue one of those files or start a new plan
+- On activation, scan `/plan` for active checkpoints: `checkpoint-*.md` files that do not include `-complete-` in the filename
+- If any active checkpoints exist, present them as a numbered list (e.g., `1) checkpoint-foo.md`) so the user can reply with a number, then ask whether to continue one of those files or start a new plan
 
 ## File creation
 - Create `/plan/checkpoint-<feature-name>.md`
-- If it already exists, open it and continue updating it (do not create a new plan file)
+- If an active file with that name already exists, open it and continue updating it (do not create a new plan file)
+- Exclude `checkpoint-complete-*.md` files from active file matching and continuation logic
 - Do not rely on in-file markers for discovery; use filename prefix instead
 
 ## Plan file rules
@@ -26,6 +28,7 @@ description: Create and maintain a single living Markdown plan file for TDD work
 - Ensure every checklist item includes: TEST, IMPLEMENT, VERIFY
 - Write or update tests before implementation for each item
 - Mark items `[x]` only after tests pass and the change is integrated
+- When all checklist items are `[x]`, perform final verification and rename the file to `/plan/checkpoint-complete-<feature-name>.md`
 
 ## Plan file template
 Use this exact structure:
@@ -61,11 +64,16 @@ For each item, use this template:
    - Update it to `[x]`
    - Append a short entry to Progress log
    - Record commands run + results (brief)
+4) At full completion:
+   - Confirm all checklist items are `[x]` and verification is passing
+   - Append a completion entry to Progress log with timestamp + final verification note
+   - Rename the plan file to `/plan/checkpoint-complete-<feature-name>.md`
 
 ## Quality gates
 - Prefer one checklist item per commit
 - Add/update changelog or docs if user-facing behavior changes
 - Never leave TODOs without an accompanying checklist item (add a new unchecked item instead)
+- A checkpoint is only fully complete after the file is renamed to `checkpoint-complete-<feature-name>.md`
 
 ## Scope control
 - If new required work appears, append new checklist items at the end
