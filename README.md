@@ -1,6 +1,6 @@
 # checkpoint
 
-Create and maintain a single, living Markdown plan for TDD work using a strict checklist template. It keeps plans actionable (TEST before IMPLEMENT), tracks progress in an append-only log, and supports a pause/resume protocol.
+Create and maintain a single, living Markdown plan for festure scoped TDD work using a strict checklist template. It keeps plans actionable (TEST before IMPLEMENT), tracks progress in an append-only log, and supports a pause/resume protocol.
 
 ## What it does
 - Creates/updates a `/plan/checkpoint-<feature-name>.md` file
